@@ -33,7 +33,7 @@ public class UserService {
         return null;
     }
 
-    public List <User> retrieveALlUsers(){
+    public List<User> retrieveALlUsers(){
         return userRepository.findAll();
     }
 

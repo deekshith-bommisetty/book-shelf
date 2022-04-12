@@ -1,0 +1,138 @@
+[
+  {
+    "name": "Introduction to Algorithms",
+    "image": "https://d1b14unh5d6w7g.cloudfront.net/0262032937.01.S001.LXXXXXXX.jpg?Expires=1649693396&Signature=cAHAJWlxMc2zz65Z7BogPJHdNFqWfpfpAa1N71iEltfLuBlsZ-1nphp6Der75x9cs7TU0TxQjVNdSex1CuBhgcAyMDEC0zHTJjKVMILMxNMhP03wqBlecFVfHUb91VsngKXLgPwPY8LWsJs36dQnDoViDUE2mH2e94H6f22b5Y8_&Key-Pair-Id=APKAIUO27P366FGALUMQ",
+    "description": "Introduction to Algorithms is a book on computer programming by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.",
+    "brand": "The MIT Press",
+    "category": "Computer Science",
+    "price": 20.89,
+    "countInStock": 10,
+    "rating": 4.5,
+    "numReviews": 12
+  },
+  {
+    "name": "Operating System Principles",
+    "image": "https://m.media-amazon.com/images/I/413Nwx4UyML.jpg",
+    "description": "Includes coverage of OS design. This title provides a chapter on real time and embedded systems. It contains a chapter on multimedia. It presents coverage of security and protection and additional coverage of distributed programming. It contains exercises at the end of each chapter",
+    "brand": "Wiley",
+    "category": "Computer Science",
+    "price": 26.89,
+    "countInStock": 10,
+    "rating": 4.0,
+    "numReviews": 12
+  },
+  {
+    "name": "Effective Java",
+    "image": "https://m.media-amazon.com/images/I/413Nwx4UyML.jpg",
+    "description": "Java has changed dramatically since the previous edition of Effective Java was published shortly after the release of Java 6. This Jolt award-winning classic has now been thoroughly updated to take full advantage of the latest language and library features. The support in modern Java for multiple paradigms increases the need for specific best-practices advice, and this book delivers.",
+    "brand": "Addison Wesley",
+    "category": "Computer Science",
+    "price": 16.89,
+    "countInStock": 10,
+    "rating": 4.0,
+    "numReviews": 12
+  },
+  {
+    "name": "Management Fundamentals: Concepts, Applications, and Skill Development",
+    "image": "https://i5.walmartimages.com/asr/f84d09ed-19b9-418c-95a8-9a6a5fbad842.d2b5a7c6c252023aa61e18b40c00690e.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+    "description": "Packed with experiential exercises, self-assessments, and group activities, the Ninth Edition of Management Fundamentals: Concepts, Applications, and Skill Development develops essential management skills students can use in their personal and professional lives. Bestselling author Robert N. Lussier uses the most current examples to illustrate management concepts in today’s ever-changing business world.",
+    "brand": " SAGE Publications, Inc",
+    "category": "Management",
+    "price": 15.99,
+    "countInStock": 10,
+    "rating": 4.2,
+    "numReviews": 12
+  },
+  {
+    "name": "Principles of Management",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/51O5C4MeuRL._SX385_BO1,204,203,200_.jpg",
+    "description": "Principles of Management presents a comprehensive framework to prepare students for college or career. By studying this text, students will learn about the responsibilities and rewards of being a manager for a profit or a not-for-profit organization. Learning the functions of management, leadership skills, and managerial soft skills bring realism to career preparation for the workplace.",
+    "brand": "‎Goodheart-Willcox",
+    "category": "Management",
+    "price": 25.99,
+    "countInStock": 10,
+    "rating": 4.4,
+    "numReviews": 12
+  },
+  {
+    "name": "Fundamentals of Corporate Finance",
+    "image": "https://d1b14unh5d6w7g.cloudfront.net/1119371406.01.S001.LXXXXXXX.jpg?Expires=1649697700&Signature=Jh2jZBusPv4mNN1YVyP~~lMAqAJRuz4YNsXoYXFjuLbBxIRecyO5Cz7Uis4r42crYfYEa79ulc15aC43z7rB7md5ec99ij~KRsrYpi88U0cOYkdzhCACp6M2Jfzw7ieFt1G0t6mb8-rDfmYsFZhzZv4mrDlB3nZKWr6SeTk7heU_&Key-Pair-Id=APKAIUO27P366FGALUMQ",
+    "description": "Parrino's Fundamentals of Corporate Finance develops the key concepts of corporate finance with an intuitive approach while also emphasizing computational skills, enabling students to develop the critical judgments necessary to apply financial tools in real decision-making situations. The fourth edition offers a level of rigor that is appropriate for both business and finance majors.",
+    "brand": "Wiley",
+    "category": "Management",
+    "price": 35.99,
+    "countInStock": 10,
+    "rating": 4.4,
+    "numReviews": 10
+  },
+  {
+    "name": "Fundamentals of Physics I: Mechanics, Relativity, and Thermodynamics",
+    "image": "https://d1b14unh5d6w7g.cloudfront.net/0300243774.01.S001.LXXXXXXX.jpg?Expires=1649697920&Signature=Rhaow1~Wk7FOgpPu~YDOF1InObNsR-~IwTsd4OkJMGmp0sHXTDaPfOsqJ9ObMyAE6gZomXOQaBfOS-U0WFPTy5o2yhlkPm1c9PytMdEynZgfX4aieNrX6JKGKfuFgysPhLcqkIQAYoZWMjdoqToEd2~HBwkhl8-D5d5pg-RwQ5E_&Key-Pair-Id=APKAIUO27P366FGALUMQ",
+    "description": "In this concise book, R. Shankar, a well‑known physicist and contagiously enthusiastic educator, explains the essential concepts of Newtonian mechanics, special relativity, waves, fluids, thermodynamics, and statistical mechanics. Now in an expanded edition—complete with problem sets and answers for course use or self‑study—this work provides an ideal introduction for college‑level students of physics, chemistry, and engineering; for AP Physics students; and for general readers interested in advances in the sciences.",
+    "brand": "Yale University Press",
+    "category": "Physics",
+    "price": 7.99,
+    "countInStock": 10,
+    "rating": 4.0,
+    "numReviews": 18
+  },
+  {
+    "name": "University Physics with Modern Physics",
+    "image": "https://d1b14unh5d6w7g.cloudfront.net/1292314737.01.S001.LXXXXXXX.jpg?Expires=1649697922&Signature=F0I88BEOtMOefxxnmX5-8ucFTIsjKl5ZhCQj4sCLI3a6yWU8Jm~lVlkb7OvnYkLwNBAtzqjOrzCl-N6jniuGHXsDRebusFeSeS0~rom0E4Q2KTKYL2ND-7gL0BGZZOxB21QGhKaW3qwwlJvula2keJZqjxUgSNvEcuNEAHx2sQw_&Key-Pair-Id=APKAIUO27P366FGALUMQ",
+    "description":
+    "Practice makes perfect. The new 15th Edition of University Physics with Modern Physics draws on a wealth of data insights from hundreds of faculty and thousands of student users to address one of the biggest challenges for students in introductory physics courses: seeing patterns and making connections between problem types. Students learn to recognize when to use similar steps in solving the same problem type and develop an understanding for problem solving approaches, rather than simply plugging in an equation.",
+    "brand": "Pearson",
+    "category": "Physics",
+    "price": 12.99,
+    "countInStock": 10,
+    "rating": 4.8,
+    "numReviews": 8
+  },
+  {
+    "name": "Classical Electrodynamics",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Jackson-E%26M-front-cover.jpg",
+    "description":
+    "Classical Electrodynamics is a textbook about that subject written by theoretical particle and nuclear physicist John David Jackson.",
+    "brand": "Wiley",
+    "category": "Physics",
+    "price": 11.99,
+    "countInStock": 10,
+    "rating": 4.9,
+    "numReviews": 7
+  },
+  {
+    "name": "Chemistry: An Introduction to General, Organic, and Biological Chemistry",
+    "image": "https://images.secondsale.com/images/d49958d7b2d9577feadee2db36e9a341.jpg",
+    "description":
+    "Karen Timberlake is Professor Emerita of Chemistry at Los Angeles Valley College, where she taught chemistry for allied health and preparatory chemistry for 36 years. She received her Bachelor’s Degree in Chemistry from the University of Washington and her Master’s Degree in Biochemistry from the University of California at Los Angeles.",
+    "brand": "Pearson",
+    "category": "Chemistry",
+    "price": 19.99,
+    "countInStock": 10,
+    "rating": 3.9,
+    "numReviews": 12
+  },
+  {
+    "name": "Introduction to Chemistry",
+    "image": "https://images.secondsale.com/images/d49958d7b2d9577feadee2db36e9a341.jpg",
+    "description":
+    "Introduction to Chemistry, Fifth edition takes a conceptual approach to introductory chemistry. Chapters open with a scenario involving real-life students to connect abstract chemical concepts to students' lives. Math is introduced on a need-to-know basis. This conceptual approach first teaches the chemistry and then shows students how to use the math with the chemistry. We recognize how important it is for students to apply chemistry to their world and have added or expanded applications - especially medical- and environment-related applications - throughout the text, marginal notes, worked examples, and end-of-chapter problems.",
+    "brand": " McGraw Hill",
+    "category": "Chemistry",
+    "price": 39.99,
+    "countInStock": 10,
+    "rating": 3.5,
+    "numReviews": 12
+  },
+  {
+    "name": "Organic Chemistry",
+    "image": "https://d1b14unh5d6w7g.cloudfront.net/0199270295.01.S001.LXXXXXXX.jpg?Expires=1649700451&Signature=ST5h4TscH8AKlwV-qrpjO~5Qs6z7kAOanBN~SyXf0pGV7e2PHMCGzl3~weC5hBfm6M4rfH3Cq5nerfXY6Am27B-yoPXpfFHldYHIN1cBppau6USR1NkI9tODT56Kqko6goxvShL0oqiV5RO7pm4W7SFaB69GZld1b5PmQtc68Ts_&Key-Pair-Id=APKAIUO27P366FGALUMQ",
+    "description":"A new style of textbook, aimed principally at the European (and British in particular) student. It is needed because almost all current organic chemistry texts are written to a fixed American pattern. This text is different from these in a number of important ways: The approach is based onexplanation rather than fact. The functional group approach (alkane, alkene, alkyne) has served American State College readers well but increasingly students and instructors are attracted more to an approach based on mechanism and reaction type. ",
+    "brand": "Oxford University Press",
+    "category": "Chemistry",
+    "price": 14.99,
+    "countInStock": 10,
+    "rating": 4.5,
+    "numReviews": 12
+  }
+]
