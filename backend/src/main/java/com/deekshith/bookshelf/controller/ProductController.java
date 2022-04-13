@@ -97,7 +97,6 @@ public class ProductController {
                     .body(new MessageResponse("Error: Products not found"));
         }
     }
-
     // has role admin
     // take care of adding userReviews
     @RequestMapping(value = "/api/products", method = RequestMethod.POST)
@@ -109,7 +108,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/api/products/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getProductByID(@PathVariable("id") String id) {
+    public ResponseEntity<?> getProductById(@PathVariable("id") String id) {
 
         Product product = productService.retrieveProduct(id);
         if(product != null){
