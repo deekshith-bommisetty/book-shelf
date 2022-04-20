@@ -3,10 +3,10 @@ package com.deekshith.bookshelf.payload.request;
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
-    @NotBlank
+    @NotBlank(message = "Email is mandatory")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Password is mandatory")
     private String password;
 
     public LoginRequest(String email, String password) {

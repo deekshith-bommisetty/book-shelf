@@ -5,16 +5,16 @@ import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 public class SignupRequest {
-    @NotBlank
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "Email is mandatory")
     @Email
     private String email;
 
     private Set<String> roles;
 
-    @NotBlank
+    @NotBlank(message = "Password is mandatory")
     private String password;
 
     public SignupRequest(String name, String email, Set<String> roles, String password) {

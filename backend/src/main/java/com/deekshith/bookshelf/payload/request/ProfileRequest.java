@@ -7,25 +7,6 @@ public class ProfileRequest {
     private String email;
     private Set<String> roles;
     private String password;
-    //check if you need more constructors
-
-//    public ProfileRequest() {
-//    }
-//    public ProfileRequest(String name) {
-//        this.name = name;
-//    }
-//    public ProfileRequest(String name, String email) {
-//        this.name = name;
-//        this.email = email;
-//    }
-//
-//
-//    public ProfileRequest(String name, String email, Set<String> roles) {
-//        this.name = name;
-//        this.email = email;
-//        this.roles = roles;
-//
-//    }
 
     public ProfileRequest(String name, String email, Set<String> roles, String password) {
         this.name = name;
