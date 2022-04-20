@@ -6,10 +6,10 @@ import com.deekshith.bookshelf.model.OrderItem;
 import com.deekshith.bookshelf.model.ShippingAddress;
 import com.deekshith.bookshelf.payload.request.OrderRequest;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
-import com.deekshith.bookshelf.repository.OrderRepository;
-import com.deekshith.bookshelf.service.OrderService;
+import com.deekshith.bookshelf.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,22 +22,23 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    OrderRepository orderRepository;
-
-    @Autowired
-    OrderService orderService;
+    OrderServiceImpl orderService;
 
     // Upate order to paid API is pending
 
+    // @desc    Update order to delivered
+    // @route   GET /api/orders/:id/deliver
+    // @access  Private/Admin
     @RequestMapping(value = "/api/orders/{id}/deliver", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> updateOrderToDelivered(@PathVariable("id") String id) {
 
-        Order order = orderService.retrieveOrder(id);
+        Order order = orderService.getOrder(id);
         if(order != null){
             order.setDelivered(true);
             order.setDeliveredAt(new Date());
 
-            return ResponseEntity.ok(orderRepository.save(order));
+            return ResponseEntity.ok(orderService.saveOrder(order));
         } else {
             return ResponseEntity
                     .badRequest()
@@ -45,10 +46,13 @@ public class OrderController {
         }
     }
 
+    // @desc    Get all orders
+    // @route   GET /api/orders
+    // @access  Private/Admin
     @RequestMapping(value = "/api/orders", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAllOrders() {
-        // Check for admin role later
-        List<Order> orderList = orderService.retrieveAllOrders();
+        List<Order> orderList = orderService.getOrders();
         if(!orderList.isEmpty()){
             return ResponseEntity.ok(orderList);
         } else {
@@ -58,10 +62,13 @@ public class OrderController {
         }
     }
 
+    // @desc    Get order by ID
+    // @route   GET /api/orders/:id
+    // @access  Private
     @RequestMapping(value = "/api/orders/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getProductById(@PathVariable("id") String id) {
+    public ResponseEntity<?> getOrderById(@PathVariable("id") String id) {
 
-        Order order = orderService.retrieveOrder(id);
+        Order order = orderService.getOrder(id);
         if(order != null){
             return ResponseEntity.ok(order);
         } else {
@@ -71,12 +78,14 @@ public class OrderController {
         }
     }
 
+    // @desc    Get logged in user orders
+    // @route   GET /api/orders/myorders
+    // @access  Private
     @RequestMapping(value = "/api/orders/myorders", method = RequestMethod.GET)
     public ResponseEntity<?> getMyOrders() {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Order> ordersList = orderService.retrieveOrders(userDetails.getId().toString());
-        System.out.println("Retrieved Orders List");
+        List<Order> ordersList = orderService.getOrdersById(userDetails.getId().toString());
         System.out.println(ordersList);
         if(ordersList != null){
             return ResponseEntity.ok(ordersList);
@@ -87,6 +96,9 @@ public class OrderController {
         }
     }
 
+    // @desc    Create new order
+    // @route   POST /api/orders
+    // @access  Private
     @RequestMapping(value = "/api/orders", method = RequestMethod.POST)
     public ResponseEntity<?> addOrderItems(@RequestBody OrderRequest orderRequest) {
 
@@ -104,6 +116,6 @@ public class OrderController {
             OrderItemsList.add(newOrderItem);
         });
         order.setOrderItems(OrderItemsList);
-        return ResponseEntity.ok(orderRepository.save(order));
+        return ResponseEntity.ok(orderService.saveOrder(order));
     }
 }
