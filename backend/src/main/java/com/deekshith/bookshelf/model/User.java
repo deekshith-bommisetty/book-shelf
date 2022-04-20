@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,13 +13,10 @@ public class User {
     @Id
     private String id;
 
-    @NotBlank
     private String name;
 
-    @NotBlank
     private String email;
 
-    @NotBlank
     private String password;
 
     @DBRef
