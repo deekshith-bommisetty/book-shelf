@@ -3,6 +3,7 @@ package com.deekshith.bookshelf.controller;
 import com.deekshith.bookshelf.config.service.UserDetailsImpl;
 import com.deekshith.bookshelf.model.Order;
 import com.deekshith.bookshelf.model.OrderItem;
+import com.deekshith.bookshelf.model.PaymentResult;
 import com.deekshith.bookshelf.model.ShippingAddress;
 import com.deekshith.bookshelf.payload.request.OrderRequest;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
@@ -24,13 +25,32 @@ public class OrderController {
     @Autowired
     OrderServiceImpl orderService;
 
-    // Upate order to paid API is pending
+    // @desc    Update order to paid
+    // @route   GET /api/orders/:id/pay
+    // @access  Private/Admin
+    @RequestMapping(value = "/api/orders/{id}/pay", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateOrderToPaid(@PathVariable("id") String id) {
+
+        Order order = orderService.getOrder(id);
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(order != null){
+            order.setPaid(true);
+            order.setPaidAt(new Date());
+            PaymentResult paymentResult = new PaymentResult(order.getUserId(), "success", order.getPaidAt(), userDetails.getEmail());
+            order.setPaymentResult(paymentResult);
+            order.setPaymentMethod("PayPal");
+            return ResponseEntity.ok(orderService.saveOrder(order));
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Order not found"));
+        }
+    }
 
     // @desc    Update order to delivered
     // @route   GET /api/orders/:id/deliver
     // @access  Private/Admin
     @RequestMapping(value = "/api/orders/{id}/deliver", method = RequestMethod.PUT)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> updateOrderToDelivered(@PathVariable("id") String id) {
 
         Order order = orderService.getOrder(id);
@@ -85,8 +105,7 @@ public class OrderController {
     public ResponseEntity<?> getMyOrders() {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Order> ordersList = orderService.getOrdersById(userDetails.getId().toString());
-        System.out.println(ordersList);
+        List<Order> ordersList = orderService.getOrdersById(userDetails.getId());
         if(ordersList != null){
             return ResponseEntity.ok(ordersList);
         } else {
@@ -109,8 +128,8 @@ public class OrderController {
         }
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ShippingAddress shippingAddress = new ShippingAddress(orderRequest.getAddress(), orderRequest.getCity(), orderRequest.getPostalCode(), orderRequest.getCountry());
-        Order order = new Order(userDetails.getId().toString(), shippingAddress, orderRequest.getPaymentMethod(), orderRequest.getTaxPrice(), orderRequest.getShippingPrice(), orderRequest.getItemsPrice());
-        ArrayList<OrderItem> OrderItemsList = new ArrayList<OrderItem>();
+        Order order = new Order(userDetails.getId(), shippingAddress, orderRequest.getPaymentMethod(), orderRequest.getTaxPrice(), orderRequest.getShippingPrice(), orderRequest.getItemsPrice());
+        ArrayList<OrderItem> OrderItemsList = new ArrayList<>();
         orderRequest.getOrderItems().forEach(orderItem -> {
             OrderItem newOrderItem = new OrderItem(orderItem.getName(), orderItem.getQty(), orderItem.getImage(), orderItem.getProductId());
             OrderItemsList.add(newOrderItem);

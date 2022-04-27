@@ -14,7 +14,6 @@ public interface OrderRepository extends MongoRepository<Order, String> {
     @Query("{userId :?0}")
     List<Order> findByUser(String userId);
 
-    @Override
     Optional<Order> findById(String s);
 
 }

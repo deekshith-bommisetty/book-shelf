@@ -1,28 +1,30 @@
 package com.deekshith.bookshelf.model;
 
+import java.util.Date;
+
 public class PaymentResult {
 
-    private String Id;
+    private String userId;
 
     private String status;
 
-    private String update_time;
+    private Date update_time;
 
     private String email_address;
 
-    public PaymentResult(String id, String status, String update_time, String email_address) {
-        Id = id;
+    public PaymentResult(String userId, String status, Date update_time, String email_address) {
+        this.userId = userId;
         this.status = status;
         this.update_time = update_time;
         this.email_address = email_address;
     }
 
-    public String getId() {
-        return Id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getStatus() {
@@ -33,11 +35,11 @@ public class PaymentResult {
         this.status = status;
     }
 
-    public String getUpdate_time() {
+    public Date getUpdate_time() {
         return update_time;
     }
 
-    public void setUpdate_time(String update_time) {
+    public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
     }
 

@@ -2,28 +2,30 @@ package com.deekshith.bookshelf.payload.request;
 
 import com.deekshith.bookshelf.model.OrderItem;
 
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 
 public class OrderRequest {
 
     private ArrayList<OrderItem> orderItems;
 
+    @NotBlank(message = "Address is mandatory")
     private String address;
-
+    @NotBlank(message = "city is mandatory")
     private  String city;
-
+    @NotBlank(message = "postalCode is mandatory")
     private String postalCode;
-
+    @NotBlank(message = "country is mandatory")
     private String country;
-
+    @NotBlank(message = "paymentMethod is mandatory")
     private String paymentMethod;
-
+    @NotBlank(message = "itemsPrice is mandatory")
     private Double itemsPrice;
 
     private Double taxPrice;
 
     private Double shippingPrice;
-
+    @NotBlank(message = "totalPrice is mandatory")
     private Double totalPrice;
 
     public OrderRequest(ArrayList<OrderItem> orderItems, String address, String city, String postalCode, String country, String paymentMethod, Double itemsPrice, Double taxPrice, Double shippingPrice, Double totalPrice) {

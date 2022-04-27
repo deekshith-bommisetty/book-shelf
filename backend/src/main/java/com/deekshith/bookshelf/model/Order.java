@@ -36,6 +36,8 @@ public class Order {
 
     private Date deliveredAt;
 
+    private PaymentResult paymentResult;
+
     public Order(String userId, ShippingAddress shippingAddress, String paymentMethod, Double taxPrice, Double shippingPrice, Double totalPrice) {
         this.userId = userId;
         this.orderItems = null;
@@ -46,6 +48,7 @@ public class Order {
         this.totalPrice = totalPrice;
         this.isPaid = false;
         this.isDelivered = false;
+        this.paymentResult = null;
     }
 
     public String getId() {
@@ -142,5 +145,17 @@ public class Order {
 
     public void setDeliveredAt(Date deliveredAt) {
         this.deliveredAt = deliveredAt;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public PaymentResult getPaymentResult() {
+        return paymentResult;
+    }
+
+    public void setPaymentResult(PaymentResult paymentResult) {
+        this.paymentResult = paymentResult;
     }
 }

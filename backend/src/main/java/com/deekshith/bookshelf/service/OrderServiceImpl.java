@@ -37,8 +37,6 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> getOrdersById(String userId) {
         List<Order> ordersList = orderRepository.findByUser(userId);
-        System.out.println("Inside service");
-        System.out.println(ordersList);
         if (ordersList != null) {
             return ordersList;
         }
