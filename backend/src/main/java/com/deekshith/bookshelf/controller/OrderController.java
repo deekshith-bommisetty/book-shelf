@@ -3,13 +3,14 @@ package com.deekshith.bookshelf.controller;
 import com.deekshith.bookshelf.config.service.UserDetailsImpl;
 import com.deekshith.bookshelf.model.Order;
 import com.deekshith.bookshelf.model.OrderItem;
+import com.deekshith.bookshelf.model.PaymentResult;
 import com.deekshith.bookshelf.model.ShippingAddress;
 import com.deekshith.bookshelf.payload.request.OrderRequest;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
-import com.deekshith.bookshelf.repository.OrderRepository;
-import com.deekshith.bookshelf.service.OrderService;
+import com.deekshith.bookshelf.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,22 +23,23 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    OrderRepository orderRepository;
+    OrderServiceImpl orderService;
 
-    @Autowired
-    OrderService orderService;
+    // @desc    Update order to paid
+    // @route   GET /api/orders/:id/pay
+    // @access  Private/Admin
+    @RequestMapping(value = "/api/orders/{id}/pay", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateOrderToPaid(@PathVariable("id") String id) {
 
-    // Upate order to paid API is pending
-
-    @RequestMapping(value = "/api/orders/{id}/deliver", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateOrderToDelivered(@PathVariable("id") String id) {
-
-        Order order = orderService.retrieveOrder(id);
+        Order order = orderService.getOrder(id);
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(order != null){
-            order.setDelivered(true);
-            order.setDeliveredAt(new Date());
-
-            return ResponseEntity.ok(orderRepository.save(order));
+            order.setPaid(true);
+            order.setPaidAt(new Date());
+            PaymentResult paymentResult = new PaymentResult(order.getUserId(), "success", order.getPaidAt(), userDetails.getEmail());
+            order.setPaymentResult(paymentResult);
+            order.setPaymentMethod("PayPal");
+            return ResponseEntity.ok(orderService.saveOrder(order));
         } else {
             return ResponseEntity
                     .badRequest()
@@ -45,10 +47,32 @@ public class OrderController {
         }
     }
 
+    // @desc    Update order to delivered
+    // @route   GET /api/orders/:id/deliver
+    // @access  Private/Admin
+    @RequestMapping(value = "/api/orders/{id}/deliver", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateOrderToDelivered(@PathVariable("id") String id) {
+
+        Order order = orderService.getOrder(id);
+        if(order != null){
+            order.setDelivered(true);
+            order.setDeliveredAt(new Date());
+
+            return ResponseEntity.ok(orderService.saveOrder(order));
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Order not found"));
+        }
+    }
+
+    // @desc    Get all orders
+    // @route   GET /api/orders
+    // @access  Private/Admin
     @RequestMapping(value = "/api/orders", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAllOrders() {
-        // Check for admin role later
-        List<Order> orderList = orderService.retrieveAllOrders();
+        List<Order> orderList = orderService.getOrders();
         if(!orderList.isEmpty()){
             return ResponseEntity.ok(orderList);
         } else {
@@ -58,10 +82,13 @@ public class OrderController {
         }
     }
 
+    // @desc    Get order by ID
+    // @route   GET /api/orders/:id
+    // @access  Private
     @RequestMapping(value = "/api/orders/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getProductById(@PathVariable("id") String id) {
+    public ResponseEntity<?> getOrderById(@PathVariable("id") String id) {
 
-        Order order = orderService.retrieveOrder(id);
+        Order order = orderService.getOrder(id);
         if(order != null){
             return ResponseEntity.ok(order);
         } else {
@@ -71,13 +98,14 @@ public class OrderController {
         }
     }
 
+    // @desc    Get logged in user orders
+    // @route   GET /api/orders/myorders
+    // @access  Private
     @RequestMapping(value = "/api/orders/myorders", method = RequestMethod.GET)
     public ResponseEntity<?> getMyOrders() {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Order> ordersList = orderService.retrieveOrders(userDetails.getId().toString());
-        System.out.println("Retrieved Orders List");
-        System.out.println(ordersList);
+        List<Order> ordersList = orderService.getOrdersById(userDetails.getId());
         if(ordersList != null){
             return ResponseEntity.ok(ordersList);
         } else {
@@ -87,6 +115,9 @@ public class OrderController {
         }
     }
 
+    // @desc    Create new order
+    // @route   POST /api/orders
+    // @access  Private
     @RequestMapping(value = "/api/orders", method = RequestMethod.POST)
     public ResponseEntity<?> addOrderItems(@RequestBody OrderRequest orderRequest) {
 
@@ -97,13 +128,13 @@ public class OrderController {
         }
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ShippingAddress shippingAddress = new ShippingAddress(orderRequest.getAddress(), orderRequest.getCity(), orderRequest.getPostalCode(), orderRequest.getCountry());
-        Order order = new Order(userDetails.getId().toString(), shippingAddress, orderRequest.getPaymentMethod(), orderRequest.getTaxPrice(), orderRequest.getShippingPrice(), orderRequest.getItemsPrice());
-        ArrayList<OrderItem> OrderItemsList = new ArrayList<OrderItem>();
+        Order order = new Order(userDetails.getId(), shippingAddress, orderRequest.getPaymentMethod(), orderRequest.getTaxPrice(), orderRequest.getShippingPrice(), orderRequest.getItemsPrice());
+        ArrayList<OrderItem> OrderItemsList = new ArrayList<>();
         orderRequest.getOrderItems().forEach(orderItem -> {
             OrderItem newOrderItem = new OrderItem(orderItem.getName(), orderItem.getQty(), orderItem.getImage(), orderItem.getProductId());
             OrderItemsList.add(newOrderItem);
         });
         order.setOrderItems(OrderItemsList);
-        return ResponseEntity.ok(orderRepository.save(order));
+        return ResponseEntity.ok(orderService.saveOrder(order));
     }
 }
