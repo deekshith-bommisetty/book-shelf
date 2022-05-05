@@ -5,6 +5,7 @@ import com.deekshith.bookshelf.model.Product;
 import com.deekshith.bookshelf.model.ProductReview;
 import com.deekshith.bookshelf.payload.request.ProductRequest;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
+import com.deekshith.bookshelf.payload.response.Response;
 import com.deekshith.bookshelf.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -96,8 +97,9 @@ public class ProductController {
     public ResponseEntity<?> getAllProducts() {
         // Check for admin role later
         List<Product> productList = productService.getProducts();
+        Response data = new Response(productList);
         if(!productList.isEmpty()){
-            return ResponseEntity.ok(productList);
+            return ResponseEntity.ok(data);
         } else {
             return ResponseEntity
                     .badRequest()

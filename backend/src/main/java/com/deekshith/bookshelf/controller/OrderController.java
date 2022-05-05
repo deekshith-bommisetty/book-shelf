@@ -7,6 +7,7 @@ import com.deekshith.bookshelf.model.PaymentResult;
 import com.deekshith.bookshelf.model.ShippingAddress;
 import com.deekshith.bookshelf.payload.request.OrderRequest;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
+import com.deekshith.bookshelf.payload.response.Response;
 import com.deekshith.bookshelf.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -73,8 +74,9 @@ public class OrderController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAllOrders() {
         List<Order> orderList = orderService.getOrders();
+        Response data = new Response(orderList);
         if(!orderList.isEmpty()){
-            return ResponseEntity.ok(orderList);
+            return ResponseEntity.ok(data);
         } else {
             return ResponseEntity
                     .badRequest()
@@ -106,8 +108,9 @@ public class OrderController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Order> ordersList = orderService.getOrdersById(userDetails.getId());
+        Response data = new Response(ordersList);
         if(ordersList != null){
-            return ResponseEntity.ok(ordersList);
+            return ResponseEntity.ok(data);
         } else {
             return ResponseEntity
                     .badRequest()

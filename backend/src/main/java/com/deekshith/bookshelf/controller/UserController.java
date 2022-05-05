@@ -11,6 +11,7 @@ import com.deekshith.bookshelf.payload.request.ProfileRequest;
 import com.deekshith.bookshelf.payload.request.SignupRequest;
 import com.deekshith.bookshelf.payload.response.JwtResponse;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
+import com.deekshith.bookshelf.payload.response.Response;
 import com.deekshith.bookshelf.payload.response.profileResponse;
 import com.deekshith.bookshelf.service.RoleServiceImpl;
 import com.deekshith.bookshelf.service.UserServiceImpl;
@@ -82,7 +83,10 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getUsers() {
         List<User> userList = userService.getUsers();
-        return ResponseEntity.ok(userList);
+        Response data = new Response(userList);
+//        return ResponseEntity.ok(userList);
+          return ResponseEntity.ok(data);
+
     }
 
     // @desc    Update user profile
