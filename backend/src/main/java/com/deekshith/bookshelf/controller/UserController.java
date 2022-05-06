@@ -84,7 +84,6 @@ public class UserController {
     public ResponseEntity<?> getUsers() {
         List<User> userList = userService.getUsers();
         Response data = new Response(userList);
-//        return ResponseEntity.ok(userList);
           return ResponseEntity.ok(data);
 
     }
