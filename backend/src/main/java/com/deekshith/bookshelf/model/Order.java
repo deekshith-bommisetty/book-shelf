@@ -51,6 +51,21 @@ public class Order {
         this.paymentResult = null;
     }
 
+    public  Order(){};
+    public Order(String id, String userId, ArrayList<OrderItem> orderItems, ShippingAddress shippingAddress, String paymentMethod, Double taxPrice, Double shippingPrice, Double totalPrice) {
+        this.id = id;
+        this.userId = userId;
+        this.orderItems = orderItems;
+        this.shippingAddress = shippingAddress;
+        this.paymentMethod = paymentMethod;
+        this.taxPrice = taxPrice;
+        this.shippingPrice = shippingPrice;
+        this.totalPrice = totalPrice;
+        this.isPaid = false;
+        this.isDelivered = false;
+        this.paymentResult = null;
+    }
+
     public String getId() {
         return id;
     }

@@ -6,11 +6,13 @@ import com.deekshith.bookshelf.config.service.UserDetailsServiceImpl;
 import com.deekshith.bookshelf.model.ERole;
 import com.deekshith.bookshelf.model.Role;
 import com.deekshith.bookshelf.model.User;
+import com.deekshith.bookshelf.model.builder.UserBuilder;
 import com.deekshith.bookshelf.payload.request.LoginRequest;
 import com.deekshith.bookshelf.payload.request.ProfileRequest;
 import com.deekshith.bookshelf.payload.request.SignupRequest;
 import com.deekshith.bookshelf.payload.response.JwtResponse;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
+import com.deekshith.bookshelf.payload.response.Response;
 import com.deekshith.bookshelf.payload.response.profileResponse;
 import com.deekshith.bookshelf.service.RoleServiceImpl;
 import com.deekshith.bookshelf.service.UserServiceImpl;
@@ -82,7 +84,9 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getUsers() {
         List<User> userList = userService.getUsers();
-        return ResponseEntity.ok(userList);
+        Response data = new Response(userList);
+          return ResponseEntity.ok(data);
+
     }
 
     // @desc    Update user profile
@@ -167,9 +171,8 @@ public class UserController {
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
-        User user = new User(signUpRequest.getName(),
-                signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+        UserBuilder userBuilder = new UserBuilder();
+        User user = userBuilder.setName(signUpRequest.getName()).setEmail(signUpRequest.getEmail()).setPassword(encoder.encode(signUpRequest.getPassword())).getUser();
         Set<String> strRoles = signUpRequest.getRoles();
         Set<Role> roles = new HashSet<>();
         if (strRoles == null) {

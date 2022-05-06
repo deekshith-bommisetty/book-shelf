@@ -5,8 +5,10 @@ import com.deekshith.bookshelf.model.Order;
 import com.deekshith.bookshelf.model.OrderItem;
 import com.deekshith.bookshelf.model.PaymentResult;
 import com.deekshith.bookshelf.model.ShippingAddress;
+import com.deekshith.bookshelf.model.builder.OrderBuilder;
 import com.deekshith.bookshelf.payload.request.OrderRequest;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
+import com.deekshith.bookshelf.payload.response.Response;
 import com.deekshith.bookshelf.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -73,8 +75,9 @@ public class OrderController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAllOrders() {
         List<Order> orderList = orderService.getOrders();
+        Response data = new Response(orderList);
         if(!orderList.isEmpty()){
-            return ResponseEntity.ok(orderList);
+            return ResponseEntity.ok(data);
         } else {
             return ResponseEntity
                     .badRequest()
@@ -106,8 +109,9 @@ public class OrderController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Order> ordersList = orderService.getOrdersById(userDetails.getId());
+        Response data = new Response(ordersList);
         if(ordersList != null){
-            return ResponseEntity.ok(ordersList);
+            return ResponseEntity.ok(data);
         } else {
             return ResponseEntity
                     .badRequest()
@@ -128,7 +132,8 @@ public class OrderController {
         }
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ShippingAddress shippingAddress = new ShippingAddress(orderRequest.getAddress(), orderRequest.getCity(), orderRequest.getPostalCode(), orderRequest.getCountry());
-        Order order = new Order(userDetails.getId(), shippingAddress, orderRequest.getPaymentMethod(), orderRequest.getTaxPrice(), orderRequest.getShippingPrice(), orderRequest.getItemsPrice());
+        OrderBuilder orderBuilder = new OrderBuilder();
+        Order order = orderBuilder.setUserId(userDetails.getId()).setShippingAddress(shippingAddress).setPaymentMethod(orderRequest.getPaymentMethod()).setTaxPrice(orderRequest.getTaxPrice()).setShippingPrice(orderRequest.getShippingPrice()).setTaxPrice(orderRequest.getItemsPrice()).getOrder();
         ArrayList<OrderItem> OrderItemsList = new ArrayList<>();
         orderRequest.getOrderItems().forEach(orderItem -> {
             OrderItem newOrderItem = new OrderItem(orderItem.getName(), orderItem.getQty(), orderItem.getImage(), orderItem.getProductId());

@@ -3,8 +3,10 @@ package com.deekshith.bookshelf.controller;
 import com.deekshith.bookshelf.config.service.UserDetailsImpl;
 import com.deekshith.bookshelf.model.Product;
 import com.deekshith.bookshelf.model.ProductReview;
+import com.deekshith.bookshelf.model.builder.ProductBuilder;
 import com.deekshith.bookshelf.payload.request.ProductRequest;
 import com.deekshith.bookshelf.payload.response.MessageResponse;
+import com.deekshith.bookshelf.payload.response.Response;
 import com.deekshith.bookshelf.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -96,8 +98,9 @@ public class ProductController {
     public ResponseEntity<?> getAllProducts() {
         // Check for admin role later
         List<Product> productList = productService.getProducts();
+        Response data = new Response(productList);
         if(!productList.isEmpty()){
-            return ResponseEntity.ok(productList);
+            return ResponseEntity.ok(data);
         } else {
             return ResponseEntity
                     .badRequest()
@@ -111,7 +114,8 @@ public class ProductController {
     @RequestMapping(value = "/api/products", method = RequestMethod.POST)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProductRequest productRequest) {
-        Product product = new Product(productRequest.getName(), productRequest.getImage(), productRequest.getBrand(), productRequest.getCategory(), productRequest.getDescription(), productRequest.getRating(), productRequest.getNumReviews(), productRequest.getPrice(), productRequest.getCountInStock());
+        ProductBuilder productBuilder = new ProductBuilder();
+        Product product = productBuilder.setName(productRequest.getName()).setImage(productRequest.getImage()).setBrand(productRequest.getBrand()).setCategory(productRequest.getCategory()).setDescription(productRequest.getDescription()).setRating(productRequest.getRating()).setNumReviews(productRequest.getNumReviews()).setPrice(productRequest.getPrice()).setCountInStock(productRequest.getCountInStock()).getProducct();
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         product.setUser(userDetails.getId().toString());
         return ResponseEntity.ok(productService.saveProduct(product));
