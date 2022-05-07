@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+// User Repository for performing DB operations on Users Collections
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
 

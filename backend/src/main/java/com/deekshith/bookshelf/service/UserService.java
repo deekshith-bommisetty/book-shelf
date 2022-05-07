@@ -7,6 +7,7 @@ import com.deekshith.bookshelf.payload.request.ProfileRequest;
 
 import java.util.List;
 
+// Interface for user related services
 public interface UserService {
     User saveUser(User user);
     User updateUser(ProfileRequest profileRequest);

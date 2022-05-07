@@ -1,5 +1,6 @@
 package com.deekshith.bookshelf.model;
 
+// Composition based OrderItem in the Order Model
 public class OrderItem {
 
     private String name;

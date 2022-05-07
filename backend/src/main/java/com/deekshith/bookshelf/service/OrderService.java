@@ -4,6 +4,7 @@ import com.deekshith.bookshelf.model.Order;
 
 import java.util.List;
 
+// Interface for order related services
 public interface OrderService {
 
     Order saveOrder(Order order);

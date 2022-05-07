@@ -36,6 +36,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+// All endpoints concerning User related functionality
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class UserController {

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// Custom implementation of the ProductService interface with adapter pattern
 @Service
 public class ProductServiceImpl implements ProductService{
 

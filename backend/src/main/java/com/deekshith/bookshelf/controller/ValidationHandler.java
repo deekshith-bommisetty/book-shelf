@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.HashMap;
 import java.util.Map;
 
+// Validation error handler for server-side validation
 @ControllerAdvice
 public class ValidationHandler extends ResponseEntityExceptionHandler {
 

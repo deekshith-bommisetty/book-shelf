@@ -6,6 +6,7 @@ import com.deekshith.bookshelf.model.ShippingAddress;
 
 import java.util.ArrayList;
 
+// Order object builder which uses builder pattern
 public class OrderBuilder {
     private  String userId;
 

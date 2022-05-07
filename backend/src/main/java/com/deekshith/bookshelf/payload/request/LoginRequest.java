@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.payload.request;
 
 import javax.validation.constraints.NotBlank;
 
+// Request Object for Login
 public class LoginRequest {
     @NotBlank(message = "Email is mandatory")
     private String email;

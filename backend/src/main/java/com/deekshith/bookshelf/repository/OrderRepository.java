@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+// Order Repository for performing DB operations on Orders Collections
 @Repository
 public interface OrderRepository extends MongoRepository<Order, String> {
 

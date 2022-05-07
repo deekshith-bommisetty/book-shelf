@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.model;
 
 import javax.validation.constraints.NotBlank;
 
+// Composition based ProductReview in the Product Model
 public class ProductReview {
     @NotBlank
     private String name;

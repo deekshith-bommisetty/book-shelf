@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Service layer based unit testing for the OrderServiceTest interface
 @SpringBootTest
 public class OrderServiceImplTest implements OrderServiceTest{
     @Mock
@@ -32,6 +33,7 @@ public class OrderServiceImplTest implements OrderServiceTest{
 
     Order order = new Order("6275834ecb267a269620cce1", "625d8afcb7f94e4cd5e5b4c5", OrderItemsList, shippingAddress, "PayPal", 0.0, 0.0, 53.78);
 
+    // Service layer unit test for Get Order by Id
     @Test
     public void whenGetOrder_shouldReturnOrder() {
         Mockito.when(orderRepository.findById("6275834ecb267a269620cce1")).thenReturn(Optional.ofNullable(order));
@@ -39,6 +41,7 @@ public class OrderServiceImplTest implements OrderServiceTest{
 
     }
 
+    // Service layer unit test for Get all orders
     @Test
     public void whenGetOrders_shouldReturnOrders() {
         List<Order> orderList = new ArrayList<Order>(List.of(order));

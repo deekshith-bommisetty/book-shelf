@@ -5,6 +5,7 @@ import com.deekshith.bookshelf.model.OrderItem;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 
+// Request Object for Order
 public class OrderRequest {
 
     private ArrayList<OrderItem> orderItems;

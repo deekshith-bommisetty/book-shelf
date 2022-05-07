@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+// Role Repository for performing DB operations on Roles Collections
 @Repository
 public interface RoleRepository extends MongoRepository<Role, String> {
 

@@ -1,5 +1,6 @@
 package com.deekshith.bookshelf.payload.response;
 
+// Response object for miscellaneous messages
 public class MessageResponse {
     private String message;
 

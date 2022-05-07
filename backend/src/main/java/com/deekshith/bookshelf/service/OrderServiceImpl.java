@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// Custom implementation of the OrderService interface with adapter pattern
 @Service
 public class OrderServiceImpl implements OrderService{
 

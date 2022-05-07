@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+// All endpoints concerning Product related functionality
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class ProductController {
@@ -96,7 +97,6 @@ public class ProductController {
     // @access  Public
     @RequestMapping(value = "/api/products", method = RequestMethod.GET)
     public ResponseEntity<?> getAllProducts() {
-        // Check for admin role later
         List<Product> productList = productService.getProducts();
         Response data = new Response(productList);
         if(!productList.isEmpty()){
