@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.payload.response;
 
 import java.util.List;
 
+// Response object for profile information
 public class profileResponse {
 
     private String id;

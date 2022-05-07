@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.model.builder;
 
 import com.deekshith.bookshelf.model.Product;
 
+// Product object builder which uses builder pattern
 public class ProductBuilder {
 
     private String name;

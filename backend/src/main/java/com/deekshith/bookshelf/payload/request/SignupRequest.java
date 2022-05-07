@@ -4,6 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
+// Request object for registration of user
 public class SignupRequest {
     @NotBlank(message = "Name is mandatory")
     private String name;

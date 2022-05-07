@@ -1,5 +1,6 @@
 package com.deekshith.bookshelf.model;
 
+// Composition based ShippingAddress in the Order Model
 public class ShippingAddress {
 
     private String address;

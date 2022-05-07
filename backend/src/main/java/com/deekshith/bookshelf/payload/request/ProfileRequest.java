@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.payload.request;
 
 import java.util.Set;
 
+// Request Object for Profile Update
 public class ProfileRequest {
     private String name;
     private String email;

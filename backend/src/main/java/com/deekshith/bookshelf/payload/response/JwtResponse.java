@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.payload.response;
 
 import java.util.List;
 
+// Response object for login
 public class JwtResponse {
     private String token;
     private String type = "Bearer";

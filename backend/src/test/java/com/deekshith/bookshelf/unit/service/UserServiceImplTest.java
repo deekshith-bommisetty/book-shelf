@@ -15,6 +15,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Service layer based unit testing for the UserServiceTest interface
 @SpringBootTest
 public class UserServiceImplTest implements UserServiceTest{
     @Mock
@@ -29,6 +30,7 @@ public class UserServiceImplTest implements UserServiceTest{
     User userTwo = new User("625d8a95b7f94e4cd5e5b4c3","Admin User", "admin@example.com","$2a$10$eOASRiZZKBrxRgCCENsBUuFNC/Tgvaw1rrY3GGKUNeokiLMJMkU6W", adminRole);
     User userThree = new User("625d8afcb7f94e4cd5e5b4c5", "Jane Doe", "jane@example.com","$2a$10$UV72M19cTBTMUKB2IYnjn.5mFLM0yk8ZpnGGkXXS64Fc9D5ECNswe", userROle);
 
+    // Service layer unit test for Get all users
     @Test
     public void whenGetAllUsers_shouldReturnAllUsers() {
 
@@ -37,16 +39,17 @@ public class UserServiceImplTest implements UserServiceTest{
         assertEquals(retrievedUsers.get(1).getEmail(), userService.getUsers().get(0).getEmail());
     }
 
+    // Service layer unit test for Get user by Id
     @Test
     public void whenGetUser_shouldReturnUser() {
         Mockito.when(userRepository.findById("625d8ad6b7f94e4cd5e5b4c4")).thenReturn(Optional.ofNullable(userOne));
         assertEquals(userOne.getEmail(), userService.getUser("625d8ad6b7f94e4cd5e5b4c4").getEmail());
     }
 
+    // Service layer unit test for Get user by email
     @Test
     public void whenGetUserByEmail_shouldReturnUser() {
         Mockito.when(userRepository.findByEmail(userOne.getEmail())).thenReturn(Optional.ofNullable(userOne));
         assertEquals(userOne.getEmail(), userService.getUserByEmail(userOne.getEmail()).getEmail());
     }
-
 }

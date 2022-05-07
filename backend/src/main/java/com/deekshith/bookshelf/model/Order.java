@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
 
+// Order Model for the database
 @Document(collection = "orders")
 public class Order {
 

@@ -1,5 +1,6 @@
 package com.deekshith.bookshelf.payload.request;
 
+// Request Object for Product
 public class ProductRequest {
 
     private String name;

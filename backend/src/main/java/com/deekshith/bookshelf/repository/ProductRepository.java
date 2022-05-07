@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+// Product Repository for performing DB operations on Products Collections
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String> {
 

@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.model.builder;
 
 import com.deekshith.bookshelf.model.User;
 
+// User object builder which uses builder pattern
 public class UserBuilder {
 
     private String name;

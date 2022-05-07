@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+// All endpoints concerning Order related functionality
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class OrderController {

@@ -15,6 +15,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Service layer based unit testing for the ProductServiceTest interface
 @SpringBootTest
 public class ProductServiceImplTest implements ProductServiceTest{
     @Mock
@@ -25,6 +26,7 @@ public class ProductServiceImplTest implements ProductServiceTest{
 
     Product product = new Product("Introduction to Algorithms", "https://d1b14unh5d6w7g.cloudfront.net/0262032937.01.S001.LXXXXXXX.jpg?Expires=1649693396&Signature=cAHAJWlxMc2zz65Z7BogPJHdNFqWfpfpAa1N71iEltfLuBlsZ-1nphp6Der75x9cs7TU0TxQjVNdSex1CuBhgcAyMDEC0zHTJjKVMILMxNMhP03wqBlecFVfHUb91VsngKXLgPwPY8LWsJs36dQnDoViDUE2mH2e94H6f22b5Y8_&Key-Pair-Id=APKAIUO27P366FGALUMQ", "The MIT Press", "Computer Science", "Introduction to Algorithms is a book on computer programming by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.", 4.5, 12, 20.89, 10);
 
+    // Service layer unit test for Get product by Id
     @Test
     public void whenGetProduct_shouldReturnProduct() {
         Mockito.when(productRepository.findById("62603785716cf23e69afb81f")).thenReturn(Optional.ofNullable(product));
@@ -32,6 +34,7 @@ public class ProductServiceImplTest implements ProductServiceTest{
         assertEquals("62603785716cf23e69afb81f", productService.getProduct("62603785716cf23e69afb81f").getId());
     }
 
+    // Service layer unit test for Get all products
     @Test
     public void whenGetProducts_shouldReturnAllProducts() {
         List<Product> retrievedProducts = new ArrayList<>(List.of(product));

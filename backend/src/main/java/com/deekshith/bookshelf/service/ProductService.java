@@ -5,6 +5,7 @@ import com.deekshith.bookshelf.payload.request.ProductRequest;
 
 import java.util.List;
 
+// Interface for product related services
 public interface ProductService {
     Product saveProduct(Product product);
     void deleteProduct(String id);

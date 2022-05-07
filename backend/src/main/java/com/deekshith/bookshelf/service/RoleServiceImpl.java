@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+// Custom implementation of the RoleService interface with adapter pattern
 @Service
 public class RoleServiceImpl implements RoleService{
 

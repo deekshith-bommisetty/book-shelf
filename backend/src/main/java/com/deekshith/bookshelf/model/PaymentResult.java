@@ -2,6 +2,7 @@ package com.deekshith.bookshelf.model;
 
 import java.util.Date;
 
+// Composition based PaymentResult in the Order Model
 public class PaymentResult {
 
     private String userId;

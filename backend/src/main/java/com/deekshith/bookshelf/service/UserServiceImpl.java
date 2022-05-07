@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// Custom implementation of the UserService interface with adapter pattern
 @Service
 public class UserServiceImpl implements UserService {
 

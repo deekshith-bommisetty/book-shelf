@@ -3,6 +3,7 @@ package com.deekshith.bookshelf.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// Role model for the database
 @Document(collection = "roles")
 public class Role {
     @Id
